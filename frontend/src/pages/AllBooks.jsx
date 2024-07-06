@@ -1,7 +1,7 @@
 import React from "react";
 
 const AllBooks = () => {
-  return <div></div>;
+  return <div>Allbooks</div>;
 };
 
 export default AllBooks;

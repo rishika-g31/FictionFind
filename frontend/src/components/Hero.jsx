@@ -2,7 +2,7 @@ import React from "react";
 import hero from "../assets/hero.png";
 const Hero = () => {
   return (
-    <div className="h-[74vh] flex">
+    <div className="h-[82vh] flex">
       <div className="w-full lg:w-3/6 flex flex-col lg:items-start justify-center">
         <h1 className="text-4xl lg:text-6xl font-semibold text-yellow-100 text-center lg:text-left">
           Discover Your Next Great Read
