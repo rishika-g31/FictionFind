@@ -1,7 +1,6 @@
 import React from "react";
-import logoo from "../assets/logo.png";
+import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-
 const Navbar = () => {
   const links = [
     { title: "Home", link: "/" },
@@ -9,22 +8,21 @@ const Navbar = () => {
     { title: "Cart", link: "/cart" },
     { title: "Profile", link: "/profile" },
   ];
-
   return (
     <div className="flex bg-zinc-800 text-white px-8 py-4 items-center justify-between">
-      <div className="flex">
-        <img className="me-4 h-10" src={logoo} alt="" />
+      <div className="flex items-center">
+        <img className="me-4 h-10" src={logo} alt="logo" />
         <h1 className="font-semibold text-2xl">FictionFind</h1>
       </div>
       <div className="nav-link-fictionfind flex items-center gap-4">
         <div className="flex gap-6">
-          {links.map((item, index) => (
+          {links.map((items, i) => (
             <Link
-              key={index}
-              to={item.link}
+              to={items.link}
               className="hover:text-blue-200 transition-all duration-300"
+              key={i}
             >
-              {item.title}
+              {items.title}
             </Link>
           ))}
         </div>

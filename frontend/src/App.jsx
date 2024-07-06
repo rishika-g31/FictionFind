@@ -4,16 +4,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Route, Routes } from "react-router-dom";
 
-
 const App = () => {
   return (
     <>
-    <Routes>
       <Navbar />
-      <Route path="/" element={<Home />} />
-      {/* <Home /> */}
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Home />} />
       </Routes>
+      <Footer />
     </>
   );
 };
