@@ -87,15 +87,16 @@ router.get("/get-recent-books", async (req, res) => {
   }
 });
 
-router.get("/get-book-by-id/:bookid", async (req, res) => {
+router.get("/get-book-by-id/:id", async (req, res) => {
   try {
-    const { bookid } = req.params;
-    const book = await Book.findById(bookid);
+    const { id } = req.params;
+    const book = await Book.findById(id);
     return res.json({
       status: "Succes",
       data: book,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
