@@ -27,11 +27,15 @@ const ViewBookDetails = () => {
         </div>
       )}
       {Data && (
-        <div className="bg-zinc-900 px-12 py-8 flex gap-8">
-          <div className="bg-zinc-800 rounded p-4 h-[80vh] w-3/6 items-center justify-center flex">
-            <img src={Data.url} alt="/" className="h-[70vh]" />
+        <div className="bg-zinc-900 px-12 py-8 flex flex-col md:flex-row gap-8">
+          <div className="w-full bg-zinc-800 rounded p-4 h-[70vh] md:h-[80vh] md:w-3/6 items-center justify-center flex ">
+            <img
+              src={Data.url}
+              alt="/"
+              className="h-[50vh] md:h-[70vh] rounded"
+            />
           </div>
-          <div className="w-3/6">
+          <div className="w-full md:w-3/6">
             <h1 className="font-semibold text-zinc-300 text-4xl ">
               {Data.title}
             </h1>
