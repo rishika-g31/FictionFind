@@ -33,7 +33,7 @@ const Login = () => {
           </div>
 
           <div className="mt-4">
-            <button className="w-full px-8 mb-4 py-2 text-xl text-white  bg-indigo-800 rounded-xl hover:bg-gray-400 hover:text-black transition-all duration-300 ">
+            <button className="w-full px-8 mb-4 py-2 text-xl text-white  bg-indigo-800 rounded-xl hover:bg-indigo-900 transition-all duration-300 ">
               Login
             </button>
           </div>
