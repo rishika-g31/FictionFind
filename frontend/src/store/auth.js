@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const authSlice = createSlice({
   name: "auth",
 
-  initialState: { isLogedIn: false, role: "user" },
+  initialState: { isLoggedIn: false, role: "user" },
 
   reducers: {
     login(state) {
-      state.isLogedIn = true;
+      state.isLoggedIn = true;
     },
     logout(state) {
-      state.isLogedIn = false;
+      state.isLoggedIn = false;
     },
     changeRole(state, action) {
       const role = action.payload;

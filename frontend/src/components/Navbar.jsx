@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import logoo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { FaGripLines } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Navbar = () => {
   const links = [
@@ -10,6 +12,11 @@ const Navbar = () => {
     { title: "Cart", link: "/cart" },
     { title: "Profile", link: "/profile" },
   ];
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  // console.log(isLoggedIn);
+  if (isLoggedIn === false) {
+    links.splice(2, 2);
+  }
 
   const [Nav, setNav] = useState("hidden");
 
@@ -32,20 +39,22 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          <div className="hidden md:flex gap-4 ">
-            <Link
-              to="/login"
-              className="px-5 py-1 border border-indigo-500 rounded-xl hover:bg-gray-200 hover:text-indigo-800 transition-all duration-300"
-            >
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              className="px-5 py-1 bg-indigo-800 rounded-xl hover:bg-gray-200 hover:text-indigo-800 transition-all duration-300"
-            >
-              SignIn
-            </Link>
-          </div>
+          {isLoggedIn === false && (
+            <div className="hidden md:flex gap-4 ">
+              <Link
+                to="/login"
+                className="px-5 py-1 border border-indigo-500 rounded-xl hover:bg-gray-200 hover:text-indigo-800 transition-all duration-300"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="px-5 py-1 bg-indigo-800 rounded-xl hover:bg-gray-200 hover:text-indigo-800 transition-all duration-300"
+              >
+                SignIn
+              </Link>
+            </div>
+          )}
           <button
             className="tect-white text-2xl hover:text-zinc-400 md:hidden"
             onClick={() =>
@@ -71,24 +80,28 @@ const Navbar = () => {
             {item.title}
           </Link>
         ))}
-        <Link
-          to="/login"
-          className="px-8 mb-8 text-2xl py-2 text-white border border-indigo-500 rounded-xl hover:bg-gray-200 hover:text-indigo-800 transition-all duration-300"
-          onClick={() =>
-            Nav === "hidden" ? setNav("block") : setNav("hidden")
-          }
-        >
-          Login
-        </Link>
-        <Link
-          to="/signup"
-          className="px-8 mb-8 py-2 text-2xl text-white  bg-indigo-800 rounded-xl hover:bg-gray-200 hover:text-indigo-800 transition-all duration-300"
-          onClick={() =>
-            Nav === "hidden" ? setNav("block") : setNav("hidden")
-          }
-        >
-          SignIn
-        </Link>
+        {isLoggedIn === false && (
+          <>
+            <Link
+              to="/login"
+              className="px-8 mb-8 text-2xl py-2 text-white border border-indigo-500 rounded-xl hover:bg-gray-200 hover:text-indigo-800 transition-all duration-300"
+              onClick={() =>
+                Nav === "hidden" ? setNav("block") : setNav("hidden")
+              }
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="px-8 mb-8 py-2 text-2xl text-white  bg-indigo-800 rounded-xl hover:bg-gray-200 hover:text-indigo-800 transition-all duration-300"
+              onClick={() =>
+                Nav === "hidden" ? setNav("block") : setNav("hidden")
+              }
+            >
+              SignIn
+            </Link>
+          </>
+        )}
       </div>
     </>
   );
