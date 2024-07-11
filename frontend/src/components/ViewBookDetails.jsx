@@ -10,22 +10,43 @@ import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 const ViewBookDetails = () => {
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const [Data, setData] = useState();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const role = useSelector((state) => state.auth.role);
-  console.log(isLoggedIn);
-  console.log(role);
+  // console.log(isLoggedIn);
+  // console.log(role);
+  const headers = {
+    id: localStorage.getItem("id"),
+    authorization: `Bearer ${localStorage.getItem("token")}`,
+    bookid: id,
+  };
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
         `http://localhost:1000/api/v1/get-book-by-id/${id}`
       );
-      console.log(response);
+      // console.log(response);
       setData(response.data.data);
     };
     fetch();
   }, []);
+  const handleFavourite = async () => {
+    const response = await axios.put(
+      "http://localhost:1000/api/v1/add-book-to-favourite",
+      {},
+      { headers }
+    );
+    alert(response.data.message);
+  };
+  const handleCart = async () => {
+    const response = await axios.put(
+      "http://localhost:1000/api/v1/add-book-to-cart",
+      {},
+      { headers }
+    );
+    alert(response.data.message);
+  };
   return (
     <>
       {!Data && (
@@ -45,10 +66,16 @@ const ViewBookDetails = () => {
               {isLoggedIn === true && role === "user" && (
                 <>
                   <div className="flex flex-row md:flex-col mt-4 md:mt-0 justify-center items-center gap-8 md:gap-0 md:justify-start">
-                    <button className="rounded-full bg-white text-3xl p-2 hover:bg-zinc-300 mt-4 md:mt-4 text-red-500">
+                    <button
+                      className="rounded-full bg-white text-3xl p-2 hover:bg-zinc-300 mt-4 md:mt-4 text-red-500"
+                      onClick={handleFavourite}
+                    >
                       <FaHeart />
                     </button>
-                    <button className="rounded-full bg-white text-3xl p-2 hover:bg-zinc-300 mt-4 md:mt-8 ">
+                    <button
+                      className="rounded-full bg-white text-3xl p-2 hover:bg-zinc-300 mt-4 md:mt-8 "
+                      onClick={handleCart}
+                    >
                       <FaShoppingCart />
                     </button>
                   </div>

@@ -4,7 +4,7 @@ import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const Sidebar = ({ data }) => {
   return (
-    <div className="bg-zinc-800 rounded p-4 flex flex-col items-center justify-between h-[90%]">
+    <div className="bg-zinc-800 rounded p-4 flex flex-col items-center justify-between md:h-[80vh]">
       <div className="flex flex-col items-center justify-center">
         <img src={data.avatar} className="h-[10vh] " />
         <p className="mt-3 text-xl font-semibold text-zinc-200">
